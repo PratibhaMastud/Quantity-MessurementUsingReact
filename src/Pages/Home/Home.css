@@ -1,0 +1,98 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(211, 211, 211, 0.158);
+}
+
+#appBar {
+  margin-top: auto;
+  height: 65px;
+  width: 100%;
+  background-color: blue;
+  color: white;
+  font-style: normal;
+  display: flex;
+  font-family: "Courier New", Courier, monospace;
+  align-items: center;
+  justify-content: center;
+}
+.cardContainer {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+  padding: 16px 32px;
+  height: 110px;
+  width: 80px;
+  opacity: 0.6;
+  transition: 0.3s;
+  background-color: white;
+  border: 1px solid #e7dcfe;
+}
+.cardContainer:hover {
+  opacity: 1;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 380px;
+  margin-top: 100px;
+  height: 40%;
+  width: 40%; */
+}
+.converter {
+  align-items: center;
+  display: flex;
+  margin-left: 415px;
+  margin-top: 50px;
+  background: #f5f6fa 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+#fromContainer {
+  left: 450px;
+  width: 200px;
+  height: 80px;
+  background-color: white;
+  border: 1px solid #e7dcfe;
+  border-radius: 3px;
+  opacity: 1;
+}
+.text {
+  text-align: left;
+  margin-left: 420px;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+.TextField {
+  width: 200px;
+}
+.selectID {
+  width: 200px;
+  height: 40px;
+}
+#toContainer {
+  top: 100px;
+  left: 400px;
+  width: 200px;
+  height: 80px;
+  justify-content: grid;
+  background-color: white;
+  border: 1px solid #e7dcfe;
+  border-radius: 3px;
+  opacity: 1;
+}
+
+#fromText {
+  justify-content: flex;
+}
+#ToText {
+  margin-left: 65px;
+  justify-content: flex;
+}
+.height {
+  height: 170px;
+}
