@@ -2,23 +2,51 @@ import React, { Component } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import {AppBar, Card, TextField} from '@material-ui/core';
 import Select from '@material-ui/core/Select';
+import LengthConvertor from '../../Services/LengthConv';
 import './Length.css';
 import LengthImg from '../../Assets/length.png';
 import TempImg from '../../Assets/Temperature.png';
 import VolumeImg from '../../Assets/Volume.png';
 
 
+let lengthObj = new LengthConvertor();
+var output = 0;
 
 class LengthComponent extends Component {
     constructor (){
         super();
-        this.state = {Length: ''}
+        this.state = {
+            Length: '',
+            setLengthFrom: '',
+            setLengthTo: '',
+            setLengthFromText:''
+        }
     }
      
-    handleChangeLen=(event)=>{
-        let Length = event.target.value;
-        this.setState({Length: event.target.value})
-    }
+    handleChangeLenFrom=(event)=>{
+        this.setState({
+            setLengthFrom: event.target.value
+        })
+        this.state.setLengthFrom = event.target.value;
+        this.output = lengthObj.calculateLength(this.state.setLengthFromText,this.state.setLengthFrom,this.state.setLengthTo);
+    };
+
+    handleChangeLenTo=(event)=>{
+        this.setState({
+            setLengthTo: event.target.value
+        })
+        this.state.setLengthTo = event.target.value;
+        this.output = lengthObj.calculateLength(this.state.setLengthFromText,this.state.setLengthFrom,this.state.setLengthTo);
+    };
+    
+    GetTextByChange=(event)=>{
+        this.setState({
+            setLengthFromText: event.target.value
+        })
+        this.state.setLengthFromText = event.target.value;
+        this.output = lengthObj.calculateLength(this.state.setLengthFromText,this.state.setLengthFrom,this.state.setLengthTo);
+    };
+
     handleLength=()=>{
         this.props.history.push("/Length");
     }
@@ -69,18 +97,17 @@ class LengthComponent extends Component {
                 <div>
                 <div id="fromText"><label>FROM</label></div>
                 <div id="fromContainer">
-                <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
+                <div><TextField className="TextField" type="text" variant="outlined" size="small" onChange={this.GetTextByChange} ></TextField></div>
                   
-                <Select className="selectID" value={this.state.Length}  onChange={this.handleChangeLen}>
-                        <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Kilometre</MenuItem>
-                        <MenuItem value={20}>Metres</MenuItem>
-                        <MenuItem value={10}>Centimetres</MenuItem>
-                        <MenuItem value={30}>Milimetre</MenuItem>
-                        <MenuItem value={10}>Micrometre</MenuItem>
-                        <MenuItem value={40}>Mile</MenuItem>
-                        <MenuItem value={50}>Foot</MenuItem>
-                        <MenuItem value={60}>Inch</MenuItem>
+                <Select className="selectID" value={this.state.setLengthFrom}  onChange={this.handleChangeLenFrom}>
+                            <MenuItem value={39370}>Kilometer</MenuItem>
+                            <MenuItem value={39}>Meter</MenuItem>
+                            <MenuItem value={0.393701}>Centimeter</MenuItem>
+                            <MenuItem value={0.393701}>Millimeter</MenuItem>
+                            <MenuItem value={0.0000393701}>Micrometer</MenuItem>
+                            <MenuItem value={63360}>Mile</MenuItem>
+                            <MenuItem value={12}>Foot</MenuItem>
+                            <MenuItem value={1}>Inch</MenuItem>
                 </Select> 
                 </div>
                 </div>
@@ -88,16 +115,16 @@ class LengthComponent extends Component {
                 <div id="ToText">
                 <label id="select-label">TO</label>
                 <div id="toContainer">
-                <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
-                <Select className="selectID" value={this.state.Length} onChange={this.handleChangeLen}>
+                <div><TextField className="TextField" type="text" variant="outlined" size="small" value={this.output} ></TextField></div>
+                <Select className="selectID" value={this.state.setLengthTo} onChange={this.handleChangeLenTo}>
                         <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Centimeters </MenuItem>
-                        <MenuItem value={20}>Kilometres </MenuItem>
-                        <MenuItem value={10}>Milimetre </MenuItem>
-                        <MenuItem value={30}>Micrometre </MenuItem>
-                        <MenuItem value={20}>Mile </MenuItem>
-                        <MenuItem value={10}>Foot </MenuItem>
-                        <MenuItem value={30}>Inch </MenuItem>
+                        <MenuItem value={1}>Centimeters </MenuItem>
+                        <MenuItem value={2}>Kilometres </MenuItem>
+                        <MenuItem value={3}>Milimetre </MenuItem>
+                        <MenuItem value={4}>Micrometre </MenuItem>
+                        <MenuItem value={5}>Mile </MenuItem>
+                        <MenuItem value={6}>Foot </MenuItem>
+                        <MenuItem value={7}>Inch </MenuItem>
                 </Select>
                 </div>
                 </div>
@@ -107,4 +134,5 @@ class LengthComponent extends Component {
             );
         }
 }
+
 export default LengthComponent;
