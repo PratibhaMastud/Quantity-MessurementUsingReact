@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-
 import MenuItem from '@material-ui/core/MenuItem';
 import {AppBar, Card, TextField} from '@material-ui/core';
 import Select from '@material-ui/core/Select';
-import './Home.css';
+import './Temperature.css';
 import LengthImg from '../../Assets/length.png';
 import TempImg from '../../Assets/Temperature.png';
 import VolumeImg from '../../Assets/Volume.png';
 import {withRouter} from 'react-router-dom';
 
 
-class Home extends Component {
+class TempComponent extends Component {
     constructor (props){
         super(props);
-        this.state = {Length: ''}
+        this.state = {temperature: ''}
     }
+     
     handleChange=(event)=>{
-        let Length = event.target.value;
-        this.setState({Length: event.target.value})
+        let temperature = event.target.value;
+        this.setState({temperature: event.target.value})
     }
-   
     handleLength=()=>{
         this.props.history.push("/Length");
     }
@@ -31,6 +30,7 @@ class Home extends Component {
     }
        
         render() {
+            console.log(this.props);
             return (
                 <div className = 'homeContainer'>
                     <AppBar id = "appBar">
@@ -48,7 +48,7 @@ class Home extends Component {
                                 Length
                             </div>
                         </Card>
-                        <Card className="cardContainer" onClick={this.handleTemp}>
+                        <Card className="cardContainer" onClick={this.handleTemp} >
                             <div>
                                 <img src={TempImg} alt="Temp"/>
                             </div>
@@ -70,18 +70,13 @@ class Home extends Component {
                 <div>
                 <div id="fromText"><label>FROM</label></div>
                 <div id="fromContainer">
-                <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
+                <div><TextField className="TextField" type="text" variant="outlined" size="small" ></TextField></div>
                   
-                <Select className="selectID" onChange={this.handleChange}>
-                        <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Kilometre</MenuItem>
-                        <MenuItem value={20}>Metres</MenuItem>
-                        <MenuItem value={10}>Micrometre</MenuItem>
-                        <MenuItem value={40}>Mile</MenuItem>
-                        <MenuItem value={10}>Centimetres</MenuItem>
-                        <MenuItem value={30}>Milimetre</MenuItem>
-                        <MenuItem value={50}>Foot</MenuItem>
-                        <MenuItem value={60}>Inch</MenuItem>
+                <Select className="selectID" value={this.state.temperature} onChange={this.handleChange}>
+                        <MenuItem value={20}>Celsius </MenuItem>
+                        <MenuItem value={20}>Fahrenheit </MenuItem>
+                        <MenuItem value={10}>Rankine </MenuItem>
+                        <MenuItem value={30}>Kelvin </MenuItem>
                 </Select> 
                 </div>
                 </div>
@@ -90,15 +85,12 @@ class Home extends Component {
                 <label id="select-label">TO</label>
                 <div id="toContainer">
                 <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
-                <Select className="selectID"  onChange={this.handleChange}>
+                <Select className="selectID" value={this.state.temperature} onChange={this.handleChange}>
                         <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Centimeters </MenuItem>
-                        <MenuItem value={20}>Kilometres </MenuItem>
-                        <MenuItem value={10}>Milimetre </MenuItem>
-                        <MenuItem value={30}>Micrometre </MenuItem>
-                        <MenuItem value={20}>Mile </MenuItem>
-                        <MenuItem value={10}>Foot </MenuItem>
-                        <MenuItem value={30}>Inch </MenuItem>
+                        <MenuItem value={20}>Celsius </MenuItem>
+                        <MenuItem value={20}>Fahrenheit </MenuItem>
+                        <MenuItem value={10}>Rankine </MenuItem>
+                        <MenuItem value={30}>Kelvin </MenuItem>
                 </Select>
                 </div>
                 </div>
@@ -109,4 +101,4 @@ class Home extends Component {
         }
     
 }
-export default withRouter(Home);
+export default withRouter(TempComponent);

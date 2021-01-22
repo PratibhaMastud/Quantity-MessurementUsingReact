@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
-
 import MenuItem from '@material-ui/core/MenuItem';
 import {AppBar, Card, TextField} from '@material-ui/core';
 import Select from '@material-ui/core/Select';
-import './Home.css';
+import './Length.css';
 import LengthImg from '../../Assets/length.png';
 import TempImg from '../../Assets/Temperature.png';
 import VolumeImg from '../../Assets/Volume.png';
-import {withRouter} from 'react-router-dom';
 
 
-class Home extends Component {
-    constructor (props){
-        super(props);
+
+class LengthComponent extends Component {
+    constructor (){
+        super();
         this.state = {Length: ''}
     }
-    handleChange=(event)=>{
+     
+    handleChangeLen=(event)=>{
         let Length = event.target.value;
         this.setState({Length: event.target.value})
     }
-   
     handleLength=()=>{
         this.props.history.push("/Length");
     }
@@ -40,7 +39,7 @@ class Home extends Component {
                         <div class="text"><label>CHOOSE TYPE</label></div>
                     </div>
                     <div className='center'>
-                        <Card className="cardContainer" onClick={this.handleLength}>
+                    <Card className="cardContainer" onClick={this.handleLength}>
                             <div>
                                 <img src={LengthImg} alt="Length"/>
                             </div>
@@ -48,7 +47,7 @@ class Home extends Component {
                                 Length
                             </div>
                         </Card>
-                        <Card className="cardContainer" onClick={this.handleTemp}>
+                        <Card className="cardContainer" onClick={this.handleTemp} >
                             <div>
                                 <img src={TempImg} alt="Temp"/>
                             </div>
@@ -72,14 +71,14 @@ class Home extends Component {
                 <div id="fromContainer">
                 <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
                   
-                <Select className="selectID" onChange={this.handleChange}>
+                <Select className="selectID" value={this.state.Length}  onChange={this.handleChangeLen}>
                         <MenuItem value=""><em>None</em></MenuItem>
                         <MenuItem value={20}>Kilometre</MenuItem>
                         <MenuItem value={20}>Metres</MenuItem>
-                        <MenuItem value={10}>Micrometre</MenuItem>
-                        <MenuItem value={40}>Mile</MenuItem>
                         <MenuItem value={10}>Centimetres</MenuItem>
                         <MenuItem value={30}>Milimetre</MenuItem>
+                        <MenuItem value={10}>Micrometre</MenuItem>
+                        <MenuItem value={40}>Mile</MenuItem>
                         <MenuItem value={50}>Foot</MenuItem>
                         <MenuItem value={60}>Inch</MenuItem>
                 </Select> 
@@ -90,7 +89,7 @@ class Home extends Component {
                 <label id="select-label">TO</label>
                 <div id="toContainer">
                 <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
-                <Select className="selectID"  onChange={this.handleChange}>
+                <Select className="selectID" value={this.state.Length} onChange={this.handleChangeLen}>
                         <MenuItem value=""><em>None</em></MenuItem>
                         <MenuItem value={20}>Centimeters </MenuItem>
                         <MenuItem value={20}>Kilometres </MenuItem>
@@ -107,6 +106,5 @@ class Home extends Component {
                 </div>
             );
         }
-    
 }
-export default withRouter(Home);
+export default LengthComponent;

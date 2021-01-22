@@ -23,11 +23,12 @@
   margin-right: 30px;
   padding: 16px 32px;
   height: 110px;
-  width: 80px;
+  width: 100px;
   opacity: 0.6;
   transition: 0.3s;
   background-color: white;
   border: 1px solid #e7dcfe;
+  border-color: rgba(38, 207, 23, 0.521);
 }
 .cardContainer:hover {
   opacity: 1;

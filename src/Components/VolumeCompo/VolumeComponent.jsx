@@ -3,23 +3,24 @@ import React, { Component } from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import {AppBar, Card, TextField} from '@material-ui/core';
 import Select from '@material-ui/core/Select';
-import './Home.css';
+import './Volume.css';
 import LengthImg from '../../Assets/length.png';
 import TempImg from '../../Assets/Temperature.png';
 import VolumeImg from '../../Assets/Volume.png';
-import {withRouter} from 'react-router-dom';
+import Volume from '../../Services/Volume.js';
 
 
-class Home extends Component {
-    constructor (props){
-        super(props);
-        this.state = {Length: ''}
+let objvol = new Volume();
+class VolumeComponent extends Component {
+    constructor (){
+        super();
+        this.state = {volume: ''}
     }
-    handleChange=(event)=>{
-        let Length = event.target.value;
-        this.setState({Length: event.target.value})
+     
+    handleChangeVol=(event)=>{
+        let vol = event.target.value;
+        this.setState({vol: event.target.value})
     }
-   
     handleLength=()=>{
         this.props.history.push("/Length");
     }
@@ -29,7 +30,7 @@ class Home extends Component {
     handleVolume=()=>{
         this.props.history.push("/Volume");
     }
-       
+        
         render() {
             return (
                 <div className = 'homeContainer'>
@@ -40,7 +41,7 @@ class Home extends Component {
                         <div class="text"><label>CHOOSE TYPE</label></div>
                     </div>
                     <div className='center'>
-                        <Card className="cardContainer" onClick={this.handleLength}>
+                    <Card className="cardContainer" onClick={this.handleLength}>
                             <div>
                                 <img src={LengthImg} alt="Length"/>
                             </div>
@@ -48,7 +49,7 @@ class Home extends Component {
                                 Length
                             </div>
                         </Card>
-                        <Card className="cardContainer" onClick={this.handleTemp}>
+                        <Card className="cardContainer" onClick={this.handleTemp} >
                             <div>
                                 <img src={TempImg} alt="Temp"/>
                             </div>
@@ -70,35 +71,35 @@ class Home extends Component {
                 <div>
                 <div id="fromText"><label>FROM</label></div>
                 <div id="fromContainer">
-                <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
-                  
-                <Select className="selectID" onChange={this.handleChange}>
+                <div><TextField className="TextField" type="text" placeholder="input" id="input" variant="outlined" size="small" ></TextField></div>
+                <Select className="selectID" value={this.state.vol} onChange={this.handleChangeVol}>
                         <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Kilometre</MenuItem>
-                        <MenuItem value={20}>Metres</MenuItem>
-                        <MenuItem value={10}>Micrometre</MenuItem>
-                        <MenuItem value={40}>Mile</MenuItem>
-                        <MenuItem value={10}>Centimetres</MenuItem>
-                        <MenuItem value={30}>Milimetre</MenuItem>
-                        <MenuItem value={50}>Foot</MenuItem>
-                        <MenuItem value={60}>Inch</MenuItem>
-                </Select> 
+                        <MenuItem value={20}>cubic meter </MenuItem>
+                        <MenuItem value={20}>barrel </MenuItem>
+                        <MenuItem value={10}>cubic foot </MenuItem>
+                        <MenuItem value={30}>cubic decimeter </MenuItem>
+                        <MenuItem value={30}>liter </MenuItem>
+                        <MenuItem value={30}>cubic inch </MenuItem>
+                        <MenuItem value={30}>cubic centimeter </MenuItem>
+
+                </Select>
                 </div>
                 </div>
                 
                 <div id="ToText">
                 <label id="select-label">TO</label>
                 <div id="toContainer">
-                <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
-                <Select className="selectID"  onChange={this.handleChange}>
+                <div><TextField className="TextField" type="text" placeholder="result" id="result" variant="outlined" size="small" ></TextField></div>
+                <Select className="selectID" value={this.state.vol} onChange={this.handleChangeVol}>
                         <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Centimeters </MenuItem>
-                        <MenuItem value={20}>Kilometres </MenuItem>
-                        <MenuItem value={10}>Milimetre </MenuItem>
-                        <MenuItem value={30}>Micrometre </MenuItem>
-                        <MenuItem value={20}>Mile </MenuItem>
-                        <MenuItem value={10}>Foot </MenuItem>
-                        <MenuItem value={30}>Inch </MenuItem>
+                        <MenuItem value={20}>cubic meter </MenuItem>
+                        <MenuItem value={20}>barrel </MenuItem>
+                        <MenuItem value={10}>cubic foot </MenuItem>
+                        <MenuItem value={30}>cubic decimeter </MenuItem>
+                        <MenuItem value={30}>liter </MenuItem>
+                        <MenuItem value={30}>cubic inch </MenuItem>
+                        <MenuItem value={30}>cubic centimeter </MenuItem>
+
                 </Select>
                 </div>
                 </div>
@@ -109,4 +110,4 @@ class Home extends Component {
         }
     
 }
-export default withRouter(Home);
+export default VolumeComponent;

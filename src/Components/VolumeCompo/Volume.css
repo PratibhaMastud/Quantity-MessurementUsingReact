@@ -23,7 +23,7 @@
   margin-right: 30px;
   padding: 16px 32px;
   height: 110px;
-  width: 80px;
+  width: 100px;
   opacity: 0.6;
   transition: 0.3s;
   background-color: white;
@@ -38,9 +38,9 @@
   align-items: center;
   justify-content: center;
   /* margin-left: 380px;
-  margin-top: 100px;
-  height: 40%;
-  width: 40%; */
+    margin-top: 100px;
+    height: 40%;
+    width: 40%; */
 }
 .converter {
   align-items: center;
