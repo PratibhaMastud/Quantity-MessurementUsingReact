@@ -7,18 +7,45 @@ import LengthImg from '../../Assets/length.png';
 import TempImg from '../../Assets/Temperature.png';
 import VolumeImg from '../../Assets/Volume.png';
 import {withRouter} from 'react-router-dom';
+import Temp from '../../Services/Temperature';
 
-
+let objTemp = new Temp();
+var output = 0;
 class TempComponent extends Component {
     constructor (props){
         super(props);
-        this.state = {temperature: ''}
+        this.state = {
+            temperature: '',
+            setTempFrom: '',
+            setTempTo: '',
+            setTempFromText:''
+        }     
     }
-     
-    handleChange=(event)=>{
-        let temperature = event.target.value;
-        this.setState({temperature: event.target.value})
-    }
+  
+    handleChangeTempFrom=(event)=>{
+        this.setState({
+            setTempFrom: event.target.value
+        })
+        this.state.setTempFrom = event.target.value;
+        this.output = objTemp.CalculateTemp(this.state.setTempFromText,this.state.setTempFrom,this.state.setTempTo);
+    };
+
+    handleChangeTempTo=(event)=>{
+        this.setState({
+            setTempTo: event.target.value
+        })
+        this.state.setTempTo = event.target.value;
+        this.output = objTemp.CalculateTemp(this.state.setTempFromText,this.state.setTempFrom,this.state.setTempTo);
+    };
+    
+    GetTextByChange=(event)=>{
+        this.setState({
+            setTempFromText: event.target.value
+        })
+        this.state.setTempFromText = event.target.value;
+        this.output = objTemp.CalculateTemp(this.state.setTempFromText,this.state.setTempFrom,this.state.setTempTo);
+    };
+    
     handleLength=()=>{
         this.props.history.push("/Length");
     }
@@ -70,13 +97,12 @@ class TempComponent extends Component {
                 <div>
                 <div id="fromText"><label>FROM</label></div>
                 <div id="fromContainer">
-                <div><TextField className="TextField" type="text" variant="outlined" size="small" ></TextField></div>
+                <div><TextField className="TextField" type="text" variant="outlined" size="small" onChange={this.GetTextByChange} ></TextField></div>
                   
-                <Select className="selectID" value={this.state.temperature} onChange={this.handleChange}>
-                        <MenuItem value={20}>Celsius </MenuItem>
-                        <MenuItem value={20}>Fahrenheit </MenuItem>
-                        <MenuItem value={10}>Rankine </MenuItem>
-                        <MenuItem value={30}>Kelvin </MenuItem>
+                <Select className="selectID" value={this.state.setTempFrom} onChange={this.handleChangeTempFrom}>
+                            <MenuItem value={1}>Celsius</MenuItem>
+                            <MenuItem value={33.8}>Fahrenheit</MenuItem>
+                            <MenuItem value={273.15}>kelvin</MenuItem>
                 </Select> 
                 </div>
                 </div>
@@ -84,13 +110,11 @@ class TempComponent extends Component {
                 <div id="ToText">
                 <label id="select-label">TO</label>
                 <div id="toContainer">
-                <div><TextField className="TextField" type="number" variant="outlined" size="small" ></TextField></div>
-                <Select className="selectID" value={this.state.temperature} onChange={this.handleChange}>
-                        <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value={20}>Celsius </MenuItem>
-                        <MenuItem value={20}>Fahrenheit </MenuItem>
-                        <MenuItem value={10}>Rankine </MenuItem>
-                        <MenuItem value={30}>Kelvin </MenuItem>
+                <div><TextField className="TextField" type="number" variant="outlined" size="small" value={this.output} ></TextField></div>
+                <Select className="selectID" value={this.state.setTempTo} onChange={this.handleChangeTempTo}>
+                            <MenuItem value={1}>Celsius</MenuItem>
+                            <MenuItem value={2}>Fahrenheit</MenuItem>
+                            <MenuItem value={3}>kelvin</MenuItem>
                 </Select>
                 </div>
                 </div>
