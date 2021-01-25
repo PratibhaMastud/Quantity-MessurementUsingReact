@@ -6,11 +6,13 @@ import Length from './Components/LengthComp/LengthComponent.jsx';
 //import Temperature from './Components/TemperatureCompo/TempComponent.jsx';
 import Volume from './Components/VolumeCompo/VolumeComponent.jsx';
 import TempComponent from './Components/TemperatureCompo/TempComponent';
+import Demo from './Components/demo';
 
 function App() {
   return (
     <div className="App">
         <h3>Hello</h3>
+        <Demo/> 
         <Router>
           <Switch>
             <Route path="/" exact component={Home}></Route>
